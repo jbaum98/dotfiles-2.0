@@ -1,3 +1,6 @@
 [submodule ".liquidprompt"]
 	path = .liquidprompt
 	url = https://github.com/nojhan/liquidprompt
+[submodule ".zplug"]
+	path = .zplug
+	url = https://github.com/zplug/zplug
