@@ -1,0 +1,13 @@
+[user]
+    email = jake.waksbaum@gmail.com
+    name = Jake Waksbaum
+[alias]
+    st = status
+    co = checkout
+    di = diff
+    dc = diff --cached
+    amend = commit --amend
+    fa = fetch --all
+    pom = push origin master
+    b = branch
+    lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
