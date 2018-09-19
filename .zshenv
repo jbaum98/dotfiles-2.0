@@ -5,4 +5,4 @@
 . ~/.aliases
 
 # Load .zshrc, containing non-login, zsh related initializations.
-. ~/.zshrc
+#. ~/.zshrc
