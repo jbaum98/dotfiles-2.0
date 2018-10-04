@@ -21,7 +21,7 @@ HISTFILESIZE=2000
 ## Appearance
 # Use Liquid prompt
 if [ -e $HOME/.liquidprompt/liquidprompt ]; then
-  . .liquidprompt/liquidprompt
+  . $HOME/.liquidprompt/liquidprompt
 fi
 
 # check the window size after each command and, if necessary,

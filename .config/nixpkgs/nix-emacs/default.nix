@@ -3,7 +3,7 @@
 }:
 let
   emacsWithPackages = (emacsPackagesNgGen emacs).emacsWithPackages;
-  emacsUsePackage = emacsWithPackages (epkg: [ epkg.melpaPackages.use-package ]);
+  emacsUsePackage = emacsWithPackages (epkg: [ epkg.melpaPackages.use-package epkg.melpaPackages.general ]);
 
   extractPackages = emacsDir: runCommand "package-names"
   {}

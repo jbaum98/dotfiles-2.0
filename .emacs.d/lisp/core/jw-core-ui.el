@@ -46,7 +46,7 @@ Selectively runs either `after-make-console-frame-hooks' or
 ;; Set default font
 (set-face-attribute 'default nil
                     :family "Iosevka"
-                    :height 140
+                    :height 100
                     :weight 'normal
                     :width 'normal)
 

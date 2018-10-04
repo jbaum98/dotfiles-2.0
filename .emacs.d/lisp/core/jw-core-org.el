@@ -13,10 +13,19 @@
 (use-package org
   :mode  "\\.org\'"
   :commands org-bookmark-jump-unhide
+  :init
+  (setq-default org-list-allow-alphabetical t)
   :config
-  (setq-default org-src-fontify-natively 't
-                org-src-tab-acts-natively 't
+  (setq-default org-src-fontify-natively t
+                org-src-tab-acts-natively t
                 org-src-window-setup 'reorganize-frame))
+
+(use-package jw-funcs-org
+  :after ox
+  :commands jw--filter-plain-list
+  :init
+  (add-to-list 'org-export-filter-plain-list-functions
+               'jw--filter-plain-list))
 
 (use-package org-bullets
   :ensure

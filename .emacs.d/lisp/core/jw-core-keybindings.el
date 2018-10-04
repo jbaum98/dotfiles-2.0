@@ -6,7 +6,8 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'general))
 
 (defvar jw-leader-key "SPC"
   "The leader key in Evil normal, visual and motion states.")
@@ -34,25 +35,24 @@
 
 (use-package general
   :demand
-  :ensure
-  :config
+  :ensure)
 
-  ;; Setup definer for leader keys
-  (general-create-definer jw-leader-def
-    :states '(normal insert visual motion emacs)
-    :prefix jw-leader-key
-    :non-normal-prefix jw-emacs-leader-key
-    :prefix-map 'jw-leader-map)
+;; Setup definer for leader keys
+(general-create-definer jw-leader-def
+  :states '(normal insert visual motion emacs)
+  :prefix jw-leader-key
+  :non-normal-prefix jw-emacs-leader-key
+  :prefix-map 'jw-leader-map)
 
-  ;; Clear out jw-mode-key
-  (general-define-key
-   :states '(normal visual motion)
-   jw-mode-key nil)
+;; Clear out jw-mode-key
+(general-define-key
+ :states '(normal visual motion)
+ jw-mode-key nil)
 
-  ;; Set jw-ex-command-key to ex mode
-  (general-define-key
-   :states '(normal visual)
-   jw-ex-command-key 'evil-ex))
+;; Set jw-ex-command-key to ex mode
+(general-define-key
+ :states '(normal visual)
+ jw-ex-command-key 'evil-ex)
 
 (use-package which-key
   :ensure
@@ -79,9 +79,6 @@
                  minibuffer-local-must-match-map
                  minibuffer-local-isearch-map))
   (define-key map (kbd "<escape>") 'keyboard-escape-quit))
-
-
-;; (define-key jw-leader-map (kbd "<escape>") '("✗" . keyboard-quit))
 
 ;; General purpose
 (jw-leader-def
@@ -148,7 +145,7 @@
     "vd" 'add-dir-local-variable
     "vf" 'add-file-local-variable
     "vp" 'add-file-local-variable-prop-line
-    "y"  '(jw/show-and-copy-buffer-filename :wk "copy-filename")))
+    "y"  '(jw/show-and-copy-buffer-filename :wk "copy-filename")))`
 
 ;; Help
 (jw-leader-def
