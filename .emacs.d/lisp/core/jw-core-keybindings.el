@@ -200,7 +200,7 @@
   "L" 'evil-window-move-far-right
   "l" 'evil-window-right
   "o" 'other-frame
-  "m" 'maximize-window
+  "m" 'delete-other-windows
   "s" 'split-window-below
   "S" 'split-window-below-and-focus
   "-" 'split-window-below
