@@ -20,13 +20,6 @@
                 org-src-tab-acts-natively t
                 org-src-window-setup 'reorganize-frame))
 
-(use-package jw-funcs-org
-  :after ox
-  :commands jw--filter-plain-list
-  :init
-  (add-to-list 'org-export-filter-plain-list-functions
-               'jw--filter-plain-list))
-
 (use-package org-bullets
   :ensure
   :hook (org-mode . org-bullets-mode)
