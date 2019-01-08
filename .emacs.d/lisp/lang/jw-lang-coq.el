@@ -7,8 +7,8 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package proof-site
-  :load-path "~/.nix-profile/share/emacs/site-lisp/ProofGeneral/generic"
+(use-package pg-init
+  :ensure proof-general
   :mode ("\\.v\\'" . coq-mode))
 
 (use-package company-coq
