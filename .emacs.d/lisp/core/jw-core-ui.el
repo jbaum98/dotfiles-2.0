@@ -106,6 +106,8 @@ Selectively runs either `after-make-console-frame-hooks' or
                                    'help-echo
                                    (concat (format-time-string "%c; ")
                                            (emacs-uptime "Uptime:%hh"))))
+
+               '(:eval company-lighter)
                ))
 
 ;; Solarized is easy on the eyes.
