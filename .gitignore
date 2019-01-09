@@ -7,3 +7,29 @@
 
 .bash_history
 .cache
+.dbus
+# Ignore myself!
+.dotfiles
+# Emacs temp files
+.emacs.d/#*#
+.ipython
+.jupyter
+.lesshst
+.local
+.nix-defexpr
+.nix-profile
+.parallel/tmp
+.pki
+.python_history
+.sage
+.ssh
+.steam
+.steampath
+.steampid
+.texlive2018
+.thunderbird
+.viminfo
+.wget-hsts
+.zcompdump
+.zsh_history
+.xdvirc
