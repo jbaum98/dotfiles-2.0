@@ -76,6 +76,7 @@
 (when (bound-and-true-p IS-DARWIN)
   (require 'jw-core-darwin))
 (require 'jw-core-autocomplete)
+(require 'jw-core-check)
 
 ;;(require 'jw-core-ivy)
 (require 'jw-core-org)

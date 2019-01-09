@@ -1,4 +1,4 @@
-;;; jw-core-autocomplete.el --- Config for yasnippet and company, and flycheck
+;;; jw-core-autocomplete.el --- Config for autocompletion
 
 ;;; Commentary:
 
@@ -10,8 +10,7 @@
 (use-package company
   :ensure
   :defer 1
-  :diminish company-mode
-  :commands global-company-mode
+  :commands company-mode
   :bind
   (:map company-mode-map
    ("M-/" . company-complete))
@@ -22,103 +21,35 @@
    ("C-k" . company-select-previous)
    ("TAB" . company-complete-selection))
   :config
-  (global-company-mode)
-  (setq tab-always-indent 'complete))
+  (setq
+   company-idle-delay 0
+   company-show-numbers t
+   tab-always-indent 'complete
+   company-backends
+   '((company-tabnine        ; super smart
+      company-files          ; files & directory
+      company-keywords       ; keywords
+      company-capf)
+     (company-abbrev company-dabbrev))))
 
-(use-package flycheck
-  :pin melpa-stable
-  :ensure
-  :defer 3
-  :diminish flycheck-mode
-  :custom
-  (flycheck-emacs-lisp-load-path 'inherit)
-  :commands
-  flycheck-define-error-level
-  global-flycheck-mode
+(use-package company-tng
+  :after company
   :config
-  (define-fringe-bitmap 'flycheck-fringe-bitmap-ball
-    (vector #b00000000
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00011100
-            #b00111110
-            #b00111110
-            #b00111110
-            #b00011100
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00000000
-            #b00000000))
-  (flycheck-define-error-level 'error
-    :severity 2
-    :overlay-category 'flycheck-error-overlay
-    :fringe-bitmap 'flycheck-fringe-bitmap-ball
-    :fringe-face 'flycheck-fringe-error)
-  (flycheck-define-error-level 'warning
-    :severity 1
-    :overlay-category 'flycheck-warning-overlay
-    :fringe-bitmap 'flycheck-fringe-bitmap-ball
-    :fringe-face 'flycheck-fringe-warning)
-  (flycheck-define-error-level 'info
-    :severity 0
-    :overlay-category 'flycheck-info-overlay
-    :fringe-bitmap 'flycheck-fringe-bitmap-ball
-    :fringe-face 'flycheck-fringe-info)
+  (company-tng-configure-default))
 
-  (cl-loop for (key desc cmd) in
-           '(("ec" "clear" flycheck-clear
-              "eh" "describe" flycheck-describe-checker
-              "el" "toggle" jw/toggle-flycheck-error-list
-              "eL" "error-list" jw/goto-flycheck-error-list
-              "ee" "explain-error-at-point" flycheck-explain-error-at-point
-              "es" "select" flycheck-select-checker
-              "eS" "set-checker-executable" flycheck-set-checker-executable
-              "ev" "verify-setup "flycheck-verify-setup))
-           do (autoload cmd (expand-file-name "jw-funcs-error") jw-funcs-dir)
-           do (define-key jw-leader-map (kbd key) (cons desc cmd)))
+(use-package company-tabnine
+  :ensure
+  :pin melpa
+  :commands company-tabnine)
 
-  (global-flycheck-mode))
-
-(use-package hippie-exp
-  :init
-  (global-set-key (kbd "M-/") 'hippie-expand)
-  ;; Disables "Using try-expand-dabbrev" on completions.
-  (setq hippie-expand-verbose nil)
-  (setq hippie-expand-try-functions-list
-        '(
-          ;; Try to expand word "dynamically", searching the current
-          ;; buffer.
-          try-expand-dabbrev
-          ;; Try to expand word "dynamically", searching all other
-          ;; buffers.
-          try-expand-dabbrev-all-buffers
-          ;; Try to expand word "dynamically", searching the kill
-          ;; ring.
-          try-expand-dabbrev-from-kill
-          ;; Try to complete text as a file name, as many characters
-          ;; as unique.
-          try-complete-file-name-partially
-          ;; Try to complete text as a file name.
-          try-complete-file-name
-          ;; Try to expand word before point according to all abbrev
-          ;; tables.
-          try-expand-all-abbrevs
-          ;; Try to complete the current line to an entire line in the
-          ;; buffer.
-          try-expand-list
-          ;; Try to complete the current line to an entire line in the
-          ;; buffer.
-          try-expand-line
-          ;; Try to complete as an Emacs Lisp symbol, as many
-          ;; characters as unique.
-          try-complete-lisp-symbol-partially
-          ;; Try to complete word as an Emacs Lisp symbol.
-          try-complete-lisp-symbol)))
+(defun jw--company-sort-tabnine-first (candidates)
+  (cl-flet ((backend (candidate)
+                     (or (get-text-property 0 'company-backend candidate)
+                         (cl-some (lambda (x) (and (not (keywordp x)) x))
+                                  company-backend))))
+    (sort candidates (lambda (e1 e2)
+                       (and (eq (backend e1) 'company-tabnine)
+                            (not (eq (backend e2) 'company-tabnine)))))))
 
 (provide 'jw-core-autocomplete)
 ;;; jw-core-autocomplete.el ends here
