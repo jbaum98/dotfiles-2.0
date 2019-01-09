@@ -4,3 +4,5 @@
 # Ignore all non-dotted top-level files/directories
 /*
 !/.*
+
+.bash_history
