@@ -1,0 +1,6 @@
+.DS_Store
+*~
+
+# Ignore all non-dotted top-level files/directories
+/*
+!/.*
