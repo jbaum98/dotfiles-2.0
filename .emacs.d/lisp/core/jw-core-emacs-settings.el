@@ -102,7 +102,7 @@
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; Remember recent files
-(recentf-mode 1)
+(unless noninteractive (recentf-mode 1))
 
 ;; End a sentence with one period.
 (setq sentence-end-double-space nil)
