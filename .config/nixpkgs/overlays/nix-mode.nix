@@ -15,7 +15,7 @@ self: super:
           sha256 = "1n8nn3zq8skdb1q7vg5na7lfm2cf1hf8b2h8lmif27qz14lqsilr";
         };
         recipe = fetchurl {
-        url = "https://raw.githubusercontent.com/melpa/melpa/e1870d786dbfac3b14386c8030e06f2d13ab9da6/recipes/nix-mode";
+          url = "https://raw.githubusercontent.com/melpa/melpa/e1870d786dbfac3b14386c8030e06f2d13ab9da6/recipes/nix-mode";
           sha256 = "10f3ly4860lkxzykw4fbvhn3i0c2hgj77jfjbhlk2c1jz9x4yyy5";
           name = "recipe";
         };
