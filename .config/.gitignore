@@ -3,3 +3,6 @@ chromium/
 cros-garcon.conf
 mimeapps.list
 weston.ini
+
+# Security critical
+hub
