@@ -9,11 +9,10 @@
 
 (use-package nix-mode
   :ensure
+  :pin melpa
   :mode "\\.nix\\'"
-  :init
-  (defun jw--nix-mode-hook ()
-    (set (make-local-variable 'indent-line-function) 'nix-indent-line))
-  :hook (nix-mode . jw--nix-mode-hook))
+  :custom
+  (nix-indent-function #'nix-indent-line))
 
 ;; (use-package nix-shell
 ;;   :ensure nil
