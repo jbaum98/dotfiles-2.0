@@ -1,6 +1,7 @@
 [user]
     email = jake.waksbaum@gmail.com
     name = Jake Waksbaum
+	signingkey = 161DAF1F5CE43352
 [alias]
     st = status
     co = checkout
@@ -18,3 +19,5 @@
 	required = true
 [rebase]
 	autosquash = true
+[commit]
+	gpgsign = true
