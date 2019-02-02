@@ -1,0 +1,18 @@
+"*":
+  core:
+    disabledPackages: [
+      "linter"
+    ]
+    telemetryConsent: "no"
+  "exception-reporting":
+    userId: "10e2e5c9-c1e3-45bf-8056-b7b415b362ca"
+  "linter-mypy":
+    lintTrigger: "LintAsYouType"
+    mypyIncrementalCacheFolderPath: "$PROJECT_PATH/.mypy_cache"
+    mypyIniFile: "$PROJECT_PATH/mypy.ini"
+    mypyPath: "$PROJECT_PATH/stubs"
+  "linter-ui-default":
+    panelHeight: 188.1764373779297
+    showPanel: true
+  welcome:
+    showOnStartup: false
