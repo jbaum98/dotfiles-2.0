@@ -18,7 +18,7 @@ install = [["npm", "install", "-g", "ocaml-language-server"]]
 
 [language.python]
 command = "pyls"
-install = [["pip", "install", "python-language-server"]]
+synchronous_triggers = ["."]
 
 [language.cpp]
 command = "cquery"
