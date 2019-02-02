@@ -19,6 +19,7 @@
 .nix-defexpr
 .nix-profile
 .parallel/tmp
+.password-store
 .pki
 .python_history
 .sage
