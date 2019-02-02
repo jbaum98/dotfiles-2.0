@@ -1,5 +1,5 @@
 ## Environment variables
-export EDITOR="$(command -v nvim && echo nvim || echo vim)"
+export EDITOR="$(command -v nvim >/dev/null && echo nvim || echo vim)"
 export PAGER="less"
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
