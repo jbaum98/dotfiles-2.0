@@ -93,6 +93,7 @@
 ;;(require 'jw-lang-lua)
 ;;(require 'jw-lang-markdown)
 (require 'jw-lang-nix)
+(require 'jw-lang-python)
 ;;(require 'jw-lang-pdf)
 ;;(require 'jw-lang-proto)
 ;;(require 'jw-lang-rust)
