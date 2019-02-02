@@ -44,9 +44,7 @@
 
 (defun jw--company-sort-tabnine-first (candidates)
   (cl-flet ((backend (candidate)
-                     (or (get-text-property 0 'company-backend candidate)
-                         (cl-some (lambda (x) (and (not (keywordp x)) x))
-                                  company-backend))))
+                     (get-text-property 0 'company-backend candidate)))
     (sort candidates (lambda (e1 e2)
                        (and (eq (backend e1) 'company-tabnine)
                             (not (eq (backend e2) 'company-tabnine)))))))

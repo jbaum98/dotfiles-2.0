@@ -12,7 +12,8 @@
 
 (defun jw--emacs-lisp-mode-hook ()
   "Hook to run on `emacs-lisp-mode'."
-  (setq company-transformers '(jw--company-sort-tabnine-first))
+  (set (make-local-variable 'company-transformers)
+       '(jw--company-sort-tabnine-first))
   (set (make-local-variable 'company-backends)
        '((company-capf    ; emacs lisp specific
           :with

@@ -8,13 +8,14 @@
   (require 'use-package))
 
 (use-package flycheck
-  :pin melpa-stable
+  :pin melpa
   :ensure
   :defer 3
   :diminish flycheck-mode
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)
   :commands
+  flycheck-mode
   flycheck-define-error-level
   global-flycheck-mode
   :config
