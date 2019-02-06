@@ -1,6 +1,9 @@
 Trolltech.conf
-chromium/
+chromium
 cros-garcon.conf
+dconf
+font-manager
+fontconfig
 mimeapps.list
 weston.ini
 

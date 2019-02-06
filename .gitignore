@@ -5,13 +5,14 @@
 /*
 !/.*
 
+.Xauthority
 .bash_history
 .cache
 .dbus
-# Ignore myself!
 .dotfiles
-# Emacs temp files
 .emacs.d/#*#
+.ghc
+.gstreamer-*
 .ipython
 .jupyter
 .lesshst
@@ -31,7 +32,6 @@
 .thunderbird
 .viminfo
 .wget-hsts
+.xdvirc
 .zcompdump
 .zsh_history
-.xdvirc
-.Xauthority
