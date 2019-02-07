@@ -14,22 +14,31 @@
   (defun jw--tuareg-mode-hook ()
     "Hook to run on entering tuareg mode."
     (when (functionp 'prettify-symbols-mode)
-      (prettify-symbols-mode))
-    ;; Disable Merlin's own error checking
-    (setq merlin-error-after-save nil)
-    ;; Enable Flycheck checker
-    (flycheck-ocaml-setup))
+      (prettify-symbols-mode)))
   :hook (tuareg-mode . jw--tuareg-mode-hook))
 
-(use-package merlin
+(use-package projectile :ensure)
+(use-package spinner :ensure :pin elpa)
+(use-package lsp-mode
   :ensure
-  :hook (tuareg-mode . merlin-mode)
-  :custom
-  (merlin-command "ocamlmerlin")
-  )
+  :after spinner
+  :hook
+  (tuareg-mode . lsp)
+  (caml-mode . lsp))
 
-(use-package flycheck-ocaml
-  :ensure)
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom-face
+  (lsp-ui-sideline-current-symbol
+   ((t (:height 0.99
+        :weight ultra-bold
+        :box (:line-width -1 :color "dim gray" :style nil)
+        :foreground "dim gray"))))
+
+  )
+(use-package company-lsp :ensure :commands company-lsp)
+
 
 (provide 'jw-lang-ocaml)
 ;;; jw-lang-ocaml ends here
