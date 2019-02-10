@@ -26,6 +26,9 @@
   :custom
   (org-bullets-bullet-list '("∙")))
 
+(use-package org-ref
+  :ensure)
+
 
 (use-package htmlize
   :ensure
