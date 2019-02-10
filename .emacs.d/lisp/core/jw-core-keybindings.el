@@ -6,8 +6,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package)
-  (require 'general))
+  (require 'use-package))
 
 (defvar jw-leader-key "SPC"
   "The leader key in Evil normal, visual and motion states.")
@@ -33,21 +32,14 @@
 (defvar-local jw-major-mode-map nil
   "The keymap for major-mode specific keybindings.")
 
-(use-package general
-  :demand
-  :ensure)
+(require 'general)
+(general-evil-setup)
 
 ;; Setup definer for leader keys
 (general-create-definer jw-leader-def
-  :states '(normal insert visual motion emacs)
+  :states '(normal insert visual emacs)
   :prefix jw-leader-key
-  :non-normal-prefix jw-emacs-leader-key
-  :prefix-map 'jw-leader-map)
-
-;; Clear out jw-mode-key
-(general-define-key
- :states '(normal visual motion)
- jw-mode-key nil)
+  :non-normal-prefix jw-emacs-leader-key)
 
 ;; Set jw-ex-command-key to ex mode
 (general-define-key
@@ -55,19 +47,13 @@
  jw-ex-command-key 'evil-ex)
 
 (use-package which-key
-  :ensure
-  :demand
-  :commands
-  which-key-mode
-  which-key-add-key-based-replacements
-  which-key-add-major-mode-key-based-replacements
-  :init
+  :defer 1
+  :commands which-key-mode
+  :config
   (setf which-key-idle-delay 0.5
         which-key-popup-type 'minibuffer
         which-key-enable-extended-define-key t)
-  :config
   (which-key-mode))
-
 ;; Instantly show in-progress key combinations.
 (setf echo-keystrokes 0.02)
 
@@ -145,7 +131,7 @@
     "vd" 'add-dir-local-variable
     "vf" 'add-file-local-variable
     "vp" 'add-file-local-variable-prop-line
-    "y"  '(jw/show-and-copy-buffer-filename :wk "copy-filename")))`
+    "y"  '(jw/show-and-copy-buffer-filename :wk "copy-filename")))
 
 ;; Help
 (jw-leader-def
@@ -168,7 +154,7 @@
   "v" 'find-variable)
 
 ;; Compilation
-(use-package jw-funcs-compilation
+(use-package jw-funcs-compile
   :general
   (jw-leader-def
     :infix "c"
@@ -188,42 +174,35 @@
   "w" 'widen)
 
 ;; Windows
-(jw-leader-def
-  :infix "w"
-  "" '(nil :wk "windows")
-  "H" 'evil-window-move-far-left
-  "h" 'evil-window-left
-  "J" 'evil-window-move-very-bottom
-  "j" 'evil-window-down
-  "K" 'evil-window-move-very-top
-  "k" 'evil-window-up
-  "L" 'evil-window-move-far-right
-  "l" 'evil-window-right
-  "o" 'other-frame
-  "m" 'delete-other-windows
-  "s" 'split-window-below
-  "S" 'split-window-below-and-focus
-  "-" 'split-window-below
-  "v" 'split-window-right
-  "V" 'split-window-right-and-focus
-  "w" 'other-window
-  "/" 'split-window-right
-  "=" 'balance-windows)
-
-(use-package winner
-  ;; we need to enable winner-mode immediately
-  :demand
-  :general
-  (jw-leader-def
-    :infix "w"
-    "U" '(winner-redo :wk "redo")
-    "u" '(winner-undo :wk "undo"))
-  :config
-  (winner-mode))
+(require 'winner)
+(winner-mode)
 
 (use-package jw-funcs-window
   :general
-  (jw-leader-def "wd" '(jw/delete-window :wd "delete-window")))
+  (jw-leader-def
+    :infix "w"
+    "" '(nil :wk "windows")
+    "H" 'evil-window-move-far-left
+    "h" 'evil-window-left
+    "J" 'evil-window-move-very-bottom
+    "j" 'evil-window-down
+    "K" 'evil-window-move-very-top
+    "k" 'evil-window-up
+    "L" 'evil-window-move-far-right
+    "l" 'evil-window-right
+    "o" 'other-frame
+    "m" 'delete-other-windows
+    "d" '(jw/delete-window :wd "delete-window")
+    "s" 'split-window-below
+    "S" 'split-window-below-and-focus
+    "-" 'split-window-below
+    "v" 'split-window-right
+    "V" 'split-window-right-and-focus
+    "w" 'other-window
+    "/" 'split-window-right
+    "=" 'balance-windows
+    "U" '(winner-redo :wk "redo")
+    "u" '(winner-undo :wk "undo")))
 
 ;; Alignment
 (use-package jw-funcs-align
@@ -231,40 +210,40 @@
   (jw-leader-def
     :infix "x"
     "" '(nil :wk "align")
-    "xa&" '(jw/align-repeat-ampersand :wk "align-repeat-ampersand")
-    "xa(" '(jw/align-repeat-left-paren :wk "align-repeat-left-paren")
-    "xa)" '(jw/align-repeat-right-paren :wk "align-repeat-right-paren")
-    "xa," '(jw/align-repeat-comma :wk "align-repeat-comma")
-    "xa." '(jw/align-repeat-decimal :wk "align-repeat-decimal")
-    "xa:" '(jw/align-repeat-colon :wk "align-repeat-colon")
-    "xa;" '(jw/align-repeat-semicolon :wk "align-repeat-semicolon")
-    "xa=" '(jw/align-repeat-equal :wk "align-repeat-equal")
-    "xa\\" '(jw/align-repeat-backslash :wk "align-repeat-backslash")
-    "xaa" 'align
-    "xac" 'align-current
-    "xam" '(jw/align-repeat-math-oper :wk "align-repeat-math-oper")
-    "xar" '(jw/align-repeat :wk "align-repeat")
-    "xa|" '(jw/align-repeat-bar :wk "align-repeat-bar")
-    "xc"  'count-region
-    "xdw" 'delete-trailing-whitespace
-    "xjc" 'set-justification-center
-    "xjf" 'set-justification-full
-    "xjl" 'set-justification-left
-    "xjn" 'set-justification-none
-    "xjr" 'set-justification-right
-    "xlc" '(jw/sort-lines-by-column :wk "sort-lines-by-column")
-    "xlC" '(jw/sort-lines-by-column-reverse :wk "sort-lines-by-column-reverse")
-    "xld" '(jw/duplicate-line-or-region :wk "duplicate-line-or-region" )
-    "xls" '(jw/sort-lines :wk "sort-lines")
-    "xlS" '(jw/sort-lines-reverse :wk "sort-lines-reverse")
-    "xlu" '(jw/uniquify-lines :wk "uniq")
-    "xtc" 'transpose-chars
-    "xtl" 'transpose-lines
-    "xtw" 'transpose-words
-    "xU"  'upcase-region
-    "xu"  'downcase-region
-    "xwc" '(jw/count-words-analysis :wk "count-words-analysis" )
-    "x TAB" 'indent-rigidly))
+    "a&" '(jw/align-repeat-ampersand :wk "align-repeat-ampersand")
+    "a(" '(jw/align-repeat-left-paren :wk "align-repeat-left-paren")
+    "a)" '(jw/align-repeat-right-paren :wk "align-repeat-right-paren")
+    "a," '(jw/align-repeat-comma :wk "align-repeat-comma")
+    "a." '(jw/align-repeat-decimal :wk "align-repeat-decimal")
+    "a:" '(jw/align-repeat-colon :wk "align-repeat-colon")
+    "a;" '(jw/align-repeat-semicolon :wk "align-repeat-semicolon")
+    "a=" '(jw/align-repeat-equal :wk "align-repeat-equal")
+    "a\\" '(jw/align-repeat-backslash :wk "align-repeat-backslash")
+    "aa" 'align
+    "ac" 'align-current
+    "am" '(jw/align-repeat-math-oper :wk "align-repeat-math-oper")
+    "ar" '(jw/align-repeat :wk "align-repeat")
+    "a|" '(jw/align-repeat-bar :wk "align-repeat-bar")
+    "c"  'count-region
+    "dw" 'delete-trailing-whitespace
+    "jc" 'set-justification-center
+    "jf" 'set-justification-full
+    "jl" 'set-justification-left
+    "jn" 'set-justification-none
+    "jr" 'set-justification-right
+    "lc" '(jw/sort-lines-by-column :wk "sort-lines-by-column")
+    "lC" '(jw/sort-lines-by-column-reverse :wk "sort-lines-by-column-reverse")
+    "ld" '(jw/duplicate-line-or-region :wk "duplicate-line-or-region" )
+    "ls" '(jw/sort-lines :wk "sort-lines")
+    "lS" '(jw/sort-lines-reverse :wk "sort-lines-reverse")
+    "lu" '(jw/uniquify-lines :wk "uniq")
+    "tc" 'transpose-chars
+    "tl" 'transpose-lines
+    "tw" 'transpose-words
+    "U"  'upcase-region
+    "u"  'downcase-region
+    "wc" '(jw/count-words-analysis :wk "count-words-analysis" )
+    "TAB" 'indent-rigidly))
 
 ;; Quiting
 (jw-leader-def

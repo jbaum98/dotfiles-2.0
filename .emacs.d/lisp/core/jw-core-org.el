@@ -7,12 +7,9 @@
 (eval-when-compile
   (require 'use-package))
 
-(eval-when-compile
-  (autoload 'org-bookmark-jump-unhide "org"))
-
 (use-package org
   :mode  "\\.org\'"
-  :commands org-bookmark-jump-unhide
+  :hook (org-mode . org-indent-mode)
   :init
   (setq-default org-list-allow-alphabetical t)
   :config
@@ -21,37 +18,26 @@
                 org-src-window-setup 'reorganize-frame))
 
 (use-package org-bullets
-  :ensure
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("∙")))
 
-(use-package org-ref
-  :ensure)
-
-
 (use-package htmlize
-  :ensure
   :commands
   htmlize-buffer
   htlmize-file
   htlmize-many-files)
 
 (use-package cdlatex
-  :ensure
   ;; org will require it
   :defer)
 
 (use-package auctex
-  :pin elpa
-  :ensure
   ;; org will require it
   :defer)
 
 (use-package org-ref
-  :no-require
-  :ensure
-  :defer)
+  :commands org-ref)
 
 (provide 'jw-core-org)
 ;;; jw-core-org.el ends here

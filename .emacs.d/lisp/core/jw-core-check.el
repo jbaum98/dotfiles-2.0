@@ -5,19 +5,14 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'general))
 
 (use-package flycheck
-  :pin melpa
-  :ensure
-  :defer 3
-  :diminish flycheck-mode
-  :custom
-  (flycheck-emacs-lisp-load-path 'inherit)
-  :commands
-  flycheck-mode
-  flycheck-define-error-level
-  global-flycheck-mode
+  :custom (flycheck-emacs-lisp-load-path 'inherit)
+  :commands flycheck-mode
+  ;; Fix keybinding issues
+  :hook (flycheck-mode . evil-normalize-keymaps)
   :config
   (define-fringe-bitmap 'flycheck-fringe-bitmap-ball
     (vector #b00000000
@@ -51,21 +46,21 @@
     :severity 0
     :overlay-category 'flycheck-info-overlay
     :fringe-bitmap 'flycheck-fringe-bitmap-ball
-    :fringe-face 'flycheck-fringe-info)
+    :fringe-face 'flycheck-fringe-info))
 
-  (cl-loop for (key desc cmd) in
-           '(("ec" "clear" flycheck-clear
-              "eh" "describe" flycheck-describe-checker
-              "el" "toggle" jw/toggle-flycheck-error-list
-              "eL" "error-list" jw/goto-flycheck-error-list
-              "ee" "explain-error-at-point" flycheck-explain-error-at-point
-              "es" "select" flycheck-select-checker
-              "eS" "set-checker-executable" flycheck-set-checker-executable
-              "ev" "verify-setup "flycheck-verify-setup))
-           do (autoload cmd (expand-file-name "jw-funcs-error") jw-funcs-dir)
-           do (define-key jw-leader-map (kbd key) (cons desc cmd)))
-
-  (global-flycheck-mode))
+(use-package jw-funcs-error
+  :general
+  (jw-leader-def
+    :keymaps 'flycheck-mode-map
+    :infix "e"
+    "c" '(flycheck-clear :wd "clear")
+    "h" '(flycheck-describe-checker :wd "describe")
+    "l" '(jw/toggle-flycheck-error-list :wd "toggle")
+    "L" '(jw/goto-flycheck-error-list :wd "error-list")
+    "e" '(flycheck-explain-error-at-point :wd "explain-error-at-point")
+    "s" '(flycheck-select-checker :wd "select")
+    "S" '(flycheck-set-checker-executable :wd "set-checker-executable")
+    "v" '(flycheck-verify-setup :wd "verify-setup")))
 
 (provide 'jw-core-check)
 ;;; jw-core-check.el ends here

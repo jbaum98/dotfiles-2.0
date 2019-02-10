@@ -8,8 +8,6 @@
   (require 'use-package))
 
 (use-package company
-  :ensure
-  :defer 1
   :commands company-mode
   :bind
   (:map company-mode-map
@@ -38,8 +36,6 @@
   (company-tng-configure-default))
 
 (use-package company-tabnine
-  :ensure
-  :pin melpa
   :commands company-tabnine)
 
 (defun jw--company-sort-tabnine-first (candidates)
