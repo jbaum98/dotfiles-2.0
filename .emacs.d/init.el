@@ -5,6 +5,10 @@
 
 ;;; Code:
 
+;; Make startup faster by reducing the frequency of garbage
+;; collection.  The default is 800 kilobytes.  Measured in bytes.
+(setq gc-cons-threshold (* 50 1000 1000))
+
 ;; Let 'em know who we are.
 (setf user-full-name "Jake Waksbaum"
       user-mail-address "jake.waksbaum@gmail.com")
@@ -19,38 +23,21 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
-;; Increase the ~gc-cons-threshold~ to avoid garbage collections
-;; during startup.
-(let ((gc-cons-threshold-backup gc-cons-threshold)
-      (file-name-handler-alist-backup file-name-handler-alist))
-
-  (setf gc-cons-threshold most-positive-fixnum
-        file-name-handler-alist nil)
-
-  (add-hook 'after-init-hook
-            (lambda ()
-              (garbage-collect)
-              (setf gc-cons-threshold gc-cons-threshold-backup)
-              file-name-handler-alist (append
-                                       file-name-handler-alist-backup
-                                       file-name-handler-alist))))
 
 ;; Stop package.el from getting in the way
 (setf
  ;; don't auto-initialize!
  package-enable-at-startup nil
- ;; don't add that `custom-set-variables' block to my initl!
+ ;; don't add that `custom-set-variables' block to my init!
  package--init-file-ensured t)
 
-;; Setup use-package the way we like.
-(setf
- ;; let us find use-package declarations with imenu
- use-package-enable-imenu-support t
- ;; don't include debugging code in macro-expansion
- use-package-expand-minimally nil)
-
-(eval-when-compile
-  (require 'use-package))
+;; Setup use-package
+;;(eval-and-compile (require 'use-package))
+;;
+;;(use-package use-package
+;;  :commands use-package
+;;  :config
+;;  (setf use-package-expand-minimally t))
 
 ;; Bring in the rest of our config
 ;; This uses byte-compiling magic to ensure that this path is
@@ -68,42 +55,38 @@
   (add-to-list 'load-path jw-lang-dir)
   (add-to-list 'load-path jw-funcs-dir))
 
-(require 'jw-core-lib)
 (require 'jw-core-emacs-settings)
 (require 'jw-core-ui)
-(require 'jw-core-keybindings)
 (require 'jw-core-evil)
-(when (bound-and-true-p IS-DARWIN)
-  (require 'jw-core-darwin))
+(require 'jw-core-keybindings)
+(require 'jw-core-org)
+(require 'jw-core-utils)
 (require 'jw-core-autocomplete)
 (require 'jw-core-check)
-
-;;(require 'jw-core-ivy)
-(require 'jw-core-org)
-;;(require 'jw-core-magit)
+(require 'jw-core-ivy)
+(require 'jw-core-magit)
 
 ;;(require 'jw-lang-aurora)
-(require 'jw-lang-coq)
-(require 'jw-lang-tex)
-(require 'jw-lang-elisp)
+;;(require 'jw-lang-coq)
+;;(require 'jw-lang-tex)
+;;(require 'jw-lang-elisp)
 ;;(require 'jw-lang-elm)
 ;;(require 'jw-lang-go)
 ;;(require 'jw-lang-haskell)
 ;;(require 'jw-lang-java)
 ;;(require 'jw-lang-lua)
 ;;(require 'jw-lang-markdown)
-(require 'jw-lang-nix)
-(require 'jw-lang-ocaml)
-(require 'jw-lang-python)
+;;(require 'jw-lang-nix)
+;;(require 'jw-lang-ocaml)
+;;(require 'jw-lang-python)
 ;;(require 'jw-lang-pdf)
 ;;(require 'jw-lang-proto)
 ;;(require 'jw-lang-rust)
 ;;(require 'jw-lang-sql)
 ;;(require 'jw-lang-yaml)
 
-(use-package esup
-  :ensure
-  :commands esup)
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
 
 (provide 'init)
 ;;; init.el ends here

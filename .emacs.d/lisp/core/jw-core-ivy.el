@@ -5,70 +5,63 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
-(require 'jw-core-keybindings)
+  (require 'use-package)
+  (require 'general))
 
 (use-package counsel
-  :ensure
+  :defer 1
   :commands counsel-mode
-  :diminish counsel-mode
-  :bind
-  (;; Current global keymap
-   ("M-x" . counsel-M-x)
+  ;; :diminish counsel-mode
+  :general
+  (general-def "M-x" 'counsel-M-x)
 
-   :map jw-leader-map
-   ("SPC" . counsel-M-x)
+  (jw-leader-def "SPC" 'counsel-M-x)
 
-   ;; files
-   ("fel" . counsel-find-library)
-   ("ff" . counsel-find-file)
-   ("fL" . counsel-locate)
-   ("fr" . counsel-recentf)
+  (jw-leader-def
+    :infix "f"
+    "el" 'counsel-find-library
+    "f" 'counsel-find-file
+    "L" 'counsel-locate
+    "r" 'counsel-recentf)
 
-   ;; help
-   ("?"  . counsel-descbinds)
-   ("hdf" . counsel-describe-function)
-   ("hdm" . describe-mode)
-   ("hdv" . counsel-describe-variable)
-   ("hR" . spacemacs/counsel-search-docs)
+  (jw-leader-def "?" 'counsel-descbinds)
+  (jw-leader-def
+    :infix "h"
+    "df" 'counsel-describe-function
+    "dm" 'describe-mode
+    "dv" 'counsel-describe-variable)
 
-   ;; register/ring
-   ("ry" . counsel-yank-pop)
+  (jw-leader-def
+    "ry" 'counsel-yank-pop
+    "sj" 'counsel-imenu
+    "ji" 'counsel-imenu
+    "iu" 'counsel-unicode-char
+    "/" 'counsel-rg
+    "sp" 'counsel-rg)
 
-   ;; jumping
-   ("sj" . counsel-imenu)
-   ("ji" . counsel-imenu)
-
-   ;; insert
-   ("iu" . counsel-unicode-char)
-
-   ;; search
-   ("/"  . counsel-rg)
-   ("sp"  . counsel-rg))
   :config
   ;; Remaps built-in commands that have a counsel replacement.
   (counsel-mode 1))
 
 (use-package ivy
-  :ensure
-  :diminish ivy-mode
-  :bind
-  (:map jw-leader-map
-   ("bb" . ivy-switch-buffer)
-   ("rl" . ivy-resume)
+  ;; :diminish ivy-mode
+  :general
+  (jw-leader-def
+   "bb" 'ivy-switch-buffer
+   "rl" 'ivy-resume)
 
-   :map ivy-minibuffer-map
-   ("C-j" . ivy-next-line)
-   ("C-k" . ivy-previous-line)
-   ("C-M-j" . ivy-scroll-up-command)
-   ("C-M-k" . ivy-scroll-down-command)
-   ("C-<return>" . ivy-alt-done)
-   ("M-<return>" . ivy-immediate-done)
-   ("C-M-n" . ivy-restrict-to-matches)
-   ("C-h" . backward-delete-char-untabify)
-   ("C-S-h" . help-map)
-   ("C-l" . ivy-alt-done)
-   ("<escape>" . minibuffer-keyboard-quit))
+  (general-def ivy-minibuffer-map
+   "C-j" 'ivy-next-line
+   "C-k" 'ivy-previous-line
+   "C-M-j" 'ivy-scroll-up-command
+   "C-M-k" 'ivy-scroll-down-command
+   "C-<return>" 'ivy-alt-done
+   "M-<return>" 'ivy-immediate-done
+   "C-M-n" 'ivy-restrict-to-matches
+   "C-h" 'backward-delete-char-untabify
+   "C-S-h" 'help-map
+   "C-l" 'ivy-alt-done
+   "<escape>" 'minibuffer-keyboard-quit)
 
   :init
   ;; 15 lines in minibuffer
@@ -85,22 +78,18 @@
 
 ;; counsel-M-x will use smex if available.
 (use-package smex
-  :ensure
-  :defer t
+  :commands smex
   :config
   (setq-default smex-save-file (expand-file-name "smex-items" user-emacs-directory)))
 
 (use-package swiper
-  :ensure
-  :bind
-  (;; Current global keymap.
-   ("\C-s" . swiper)
+  :general
+  (general-def "\C-s" 'swiper)
 
-   :map jw-leader-map
-   ("ss" . swiper)
-   ("sS" . spacemacs/swiper-region-or-symbol)
-   ("sb" . swiper-all)
-   ("sB" . spacemacs/swiper-all-region-or-symbol)))
+  (jw-leader-def
+    :infix "s"
+   "ss" 'swiper
+   "sb" 'swiper-all))
 
 (provide 'jw-core-ivy)
 ;;; jw-core-ivy.el ends here

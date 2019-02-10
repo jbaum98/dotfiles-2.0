@@ -43,26 +43,12 @@ Selectively runs either `after-make-console-frame-hooks' or
             (scroll-bar-mode -1)
             (blink-cursor-mode -1)
             (menu-bar-mode -1)))
-;; Set default font
-(set-face-attribute 'default nil
-                    :family "Iosevka"
-                    :height 100
-                    :weight 'normal
-                    :width 'normal)
 
 ;; Go straight to the scratch buffer.
 (setf inhibit-splash-screen t
       initial-scratch-message "")
 
 ;; Control over modes displayed in the modeline.
-;;(use-package dim
-;;  :ensure
-;;  :demand
-;;  :config
-;;  (dim-major-names
-;;   '((emacs-lisp-mode          "ELisp")
-;;     (lisp-interaction-mode    "ELisp")
-;;     (inferior-emacs-lisp-mode "ELisp>"))))
 
 (setq-default mode-line-format (list
                ;; the buffer name; the file name as a tool tip
@@ -111,17 +97,12 @@ Selectively runs either `after-make-console-frame-hooks' or
                ))
 
 ;; Solarized is easy on the eyes.
-(use-package solarized-theme
-  :ensure
-  :config (load-theme 'solarized-light t))
+(require 'solarized)
+(load-theme 'solarized-light t)
 
 ;; Display pretty symbols
-(use-package prog-mode
-  :defer 3
-  :commands global-prettify-symbols-mode
-  :config
-  (setq-default prettify-symbols-unprettify-at-point 'right-edge)
-  (global-prettify-symbols-mode))
+(setq-default prettify-symbols-unprettify-at-point 'right-edge)
+(run-with-idle-timer 3 nil #'global-prettify-symbols-mode)
 
 (provide 'jw-core-ui)
 ;;; jw-core-ui.el ends here
