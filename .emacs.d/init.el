@@ -69,7 +69,7 @@
 ;;(require 'jw-lang-aurora)
 (require 'jw-lang-coq)
 ;;(require 'jw-lang-tex)
-;;(require 'jw-lang-elisp)
+(require 'jw-lang-elisp)
 ;;(require 'jw-lang-elm)
 ;;(require 'jw-lang-go)
 ;;(require 'jw-lang-haskell)
