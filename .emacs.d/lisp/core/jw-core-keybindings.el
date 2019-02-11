@@ -41,6 +41,12 @@
   :prefix jw-leader-key
   :non-normal-prefix jw-emacs-leader-key)
 
+;; Setup definer for mode keys
+(general-create-definer jw-mode-def
+  :states '(normal insert visual emacs)
+  :prefix jw-mode-key
+  :non-normal-prefix jw-emacs-mode-key)
+
 ;; Set jw-ex-command-key to ex mode
 (general-define-key
  :states '(normal visual)

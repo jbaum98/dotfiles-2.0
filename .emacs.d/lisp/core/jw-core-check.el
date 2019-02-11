@@ -50,8 +50,7 @@
 
 (use-package jw-funcs-error
   :general
-  (jw-leader-def
-    :keymaps 'flycheck-mode-map
+  (jw-leader-def flycheck-mode-map
     :infix "e"
     "c" '(flycheck-clear :wd "clear")
     "h" '(flycheck-describe-checker :wd "describe")
