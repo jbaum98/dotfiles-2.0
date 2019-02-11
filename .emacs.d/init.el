@@ -76,7 +76,7 @@
 ;;(require 'jw-lang-java)
 ;;(require 'jw-lang-lua)
 ;;(require 'jw-lang-markdown)
-;;(require 'jw-lang-nix)
+(require 'jw-lang-nix)
 ;;(require 'jw-lang-ocaml)
 ;;(require 'jw-lang-python)
 ;;(require 'jw-lang-pdf)
