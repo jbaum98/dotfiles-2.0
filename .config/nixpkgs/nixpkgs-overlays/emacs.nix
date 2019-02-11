@@ -5,6 +5,7 @@ self: super:
       cdlatex
       company
       company-coq
+      company-tabnine
       counsel
       esup
       evil
@@ -26,10 +27,10 @@ self: super:
       tuareg
       which-key
     ]) ++ (with epkgs.melpaPackages; [
-      company-tabnine
       flycheck
       nix-mode
       use-package
+      proof-general
     ]) ++ (with epkgs.elpaPackages; [
       auctex
     ]));

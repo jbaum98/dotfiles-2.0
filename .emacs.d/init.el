@@ -67,7 +67,7 @@
 (require 'jw-core-magit)
 
 ;;(require 'jw-lang-aurora)
-;;(require 'jw-lang-coq)
+(require 'jw-lang-coq)
 ;;(require 'jw-lang-tex)
 ;;(require 'jw-lang-elisp)
 ;;(require 'jw-lang-elm)
