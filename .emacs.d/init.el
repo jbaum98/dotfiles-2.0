@@ -57,8 +57,8 @@
 
 (require 'jw-core-emacs-settings)
 (require 'jw-core-ui)
-(require 'jw-core-evil)
 (require 'jw-core-keybindings)
+(require 'jw-core-evil)
 (require 'jw-core-org)
 (require 'jw-core-utils)
 (require 'jw-core-autocomplete)

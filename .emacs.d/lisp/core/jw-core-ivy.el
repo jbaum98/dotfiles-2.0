@@ -5,8 +5,9 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package)
-  (require 'general))
+  (require 'use-package))
+
+(use-package general :commands general-define-key)
 
 (use-package counsel
   :defer 1

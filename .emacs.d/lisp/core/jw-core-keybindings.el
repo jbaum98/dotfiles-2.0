@@ -6,7 +6,8 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (add-to-list 'load-path "../funcs"))
 
 (defvar jw-leader-key "SPC"
   "The leader key in Evil normal, visual and motion states.")
@@ -33,19 +34,20 @@
   "The keymap for major-mode specific keybindings.")
 
 (require 'general)
-(general-evil-setup)
 
 ;; Setup definer for leader keys
-(general-create-definer jw-leader-def
-  :states '(normal insert visual emacs)
-  :prefix jw-leader-key
-  :non-normal-prefix jw-emacs-leader-key)
+(eval-and-compile
+  (general-create-definer jw-leader-def
+    :states '(normal insert visual emacs)
+    :prefix jw-leader-key
+    :non-normal-prefix jw-emacs-leader-key))
 
 ;; Setup definer for mode keys
-(general-create-definer jw-mode-def
-  :states '(normal insert visual emacs)
-  :prefix jw-mode-key
-  :non-normal-prefix jw-emacs-mode-key)
+(eval-and-compile
+  (general-create-definer jw-mode-def
+    :states '(normal insert visual emacs)
+    :prefix jw-mode-key
+    :non-normal-prefix jw-emacs-mode-key))
 
 ;; Set jw-ex-command-key to ex mode
 (general-define-key
@@ -160,7 +162,7 @@
   "v" 'find-variable)
 
 ;; Compilation
-(use-package jw-funcs-compile
+(use-package jw-funcs-compilation
   :general
   (jw-leader-def
     :infix "c"

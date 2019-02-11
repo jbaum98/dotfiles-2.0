@@ -6,11 +6,13 @@
 
 (eval-when-compile
   (require 'use-package)
-  (require 'general))
+  (add-to-list 'load-path "../funcs"))
 
 (use-package flycheck
   :custom (flycheck-emacs-lisp-load-path 'inherit)
   :commands flycheck-mode
+  ;; TODO: use :functions
+  :commands flycheck-define-error-level
   ;; Fix keybinding issues
   :hook (flycheck-mode . evil-normalize-keymaps)
   :config
@@ -48,7 +50,10 @@
     :fringe-bitmap 'flycheck-fringe-bitmap-ball
     :fringe-face 'flycheck-fringe-info))
 
+(use-package general :commands general-define-key)
+
 (use-package jw-funcs-error
+  :after flycheck
   :general
   (jw-leader-def flycheck-mode-map
     :infix "e"

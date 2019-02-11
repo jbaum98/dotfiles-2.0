@@ -5,19 +5,22 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'general))
+
+(use-package general :commands general-define-key)
 
 (use-package company
   :commands company-mode
-  :bind
-  (:map company-mode-map
-   ("M-/" . company-complete))
-  (:map company-active-map
-   ("M-n" . company-select-next)
-   ("M-p" . company-select-previous)
-   ("C-j" . company-select-next)
-   ("C-k" . company-select-previous)
-   ("TAB" . company-complete-selection))
+  :general
+  (general-def company-mode-map
+   "M-/" 'company-complete)
+  (general-def company-active-map
+   "M-n" 'company-select-next
+   "M-p" 'company-select-previous
+   "C-j" 'company-select-next
+   "C-k" 'company-select-previous
+   "TAB" 'company-complete-selection)
   :config
   (setq
    company-idle-delay 0
@@ -32,6 +35,8 @@
 
 (use-package company-tng
   :after company
+  ;; TODO: use :functions
+  :commands company-tng-configure-default
   :config
   (company-tng-configure-default))
 

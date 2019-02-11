@@ -6,7 +6,10 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'general))
+
+(use-package general :commands general-define-key)
 
 (require 'evil)
 
@@ -53,11 +56,11 @@
 ;; Motions and text objects for delimited arguments, e.g. the params
 ;; in `def func(foo, bar, baz)'.
 (use-package evil-args
-  :bind
-  (:map evil-inner-text-objects-map
-   ("a" . evil-inner-arg)
-   :map evil-outer-text-objects-map
-   ("a" . evil-outer-arg)))
+  :general
+  (general-def evil-inner-text-objects-map
+    "a" 'evil-inner-arg)
+  (general-def evil-outer-text-objects-map
+    "a" 'evil-outer-arg))
 
 ;; Enables two char keypress to exit most modes.
 (use-package evil-escape

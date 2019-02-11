@@ -6,7 +6,8 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'jw-core-lib (expand-file-name "../core/jw-core-lib.el")))
+  (add-to-list 'load-path "../core")
+  (require 'jw-core-lib))
 
 (autoload 'projectile-invalidate-cache "projectile")
 (autoload 'dired-get-file-for-visit "dired")

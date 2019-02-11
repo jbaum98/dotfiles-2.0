@@ -5,7 +5,10 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'general))
+
+(use-package general :commands general-define-key)
 
 (use-package pg-init
   :mode ("\\.v\\'" . coq-mode)
@@ -36,23 +39,23 @@
   (coq-compile-before-require t)
   (coq-compile-auto-save 'ask-coq)
   (coq-compile-parallel-in-background t)
-  (coq-max-background-compilation-jobs 'all-cpus))
-
-(jw-mode-def proof-mode-map
-  "n" 'proof-assert-next-command-interactive
-  "]" 'proof-assert-next-command-interactive
-  "u" 'proof-undo-last-successful-command
-  "[" 'proof-undo-last-successful-command
-  "h" 'company-coq-doc
-  "ll" 'proof-layout-windows
-  "lp" 'proof-prf
-  "x" 'proof-shell-exit
-  "s" 'proof-find-theorems
-  "?" 'coq-Check
-  "p" 'coq-Print
-  ";" 'pg-insert-last-output-as-comment
-  "o" 'company-coq-occur
-  "." 'proof-goto-point)
+  (coq-max-background-compilation-jobs 'all-cpus)
+  :general
+  (jw-mode-def proof-mode-map
+    "n" 'proof-assert-next-command-interactive
+    "]" 'proof-assert-next-command-interactive
+    "u" 'proof-undo-last-successful-command
+    "[" 'proof-undo-last-successful-command
+    "h" 'company-coq-doc
+    "ll" 'proof-layout-windows
+    "lp" 'proof-prf
+    "x" 'proof-shell-exit
+    "s" 'proof-find-theorems
+    "?" 'coq-Check
+    "p" 'coq-Print
+    ";" 'pg-insert-last-output-as-comment
+    "o" 'company-coq-occur
+    "." 'proof-goto-point))
 
 (provide 'jw-lang-coq)
 ;;; jw-lang-coq.el ends here
