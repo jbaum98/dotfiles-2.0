@@ -7,3 +7,5 @@ custom.el
 .lsp-session-v*
 bookmarks
 smex-items
+projectile.cache
+projectile-bookmarks.eld

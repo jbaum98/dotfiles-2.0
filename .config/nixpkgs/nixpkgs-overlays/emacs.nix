@@ -5,6 +5,7 @@ self: super:
       cdlatex
       company
       company-coq
+      company-lsp
       company-tabnine
       counsel
       esup
@@ -16,13 +17,17 @@ self: super:
       general
       htmlize
       ivy
+      lsp-mode
+      lsp-ui
       magit
       merlin
       org-bullets
       org-ref
+      projectile
       proof-general
       smex
       solarized-theme
+      spinner
       swiper
       tuareg
       which-key
