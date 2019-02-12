@@ -8,7 +8,6 @@
   (require 'use-package))
 
 (use-package yaml-mode
-  :ensure
   :mode "\\.yaml\\'")
 
 (provide 'jw-lang-yaml)

@@ -8,7 +8,6 @@
   (require 'use-package))
 
 (use-package pdf-tools
-  :ensure
   :mode ("\\.pdf\\'" . doc-view-mode))
 
 (provide 'jw-lang-pdf)

@@ -10,6 +10,9 @@
 
 (use-package general :commands general-define-key)
 
+(make-variable-buffer-local 'company-backends)
+(make-variable-buffer-local 'company-transformers)
+
 (use-package company
   :commands company-mode
   :general
@@ -22,7 +25,7 @@
    "C-k" 'company-select-previous
    "TAB" 'company-complete-selection)
   :config
-  (setq
+  (setq-default
    company-idle-delay 0
    company-show-numbers t
    tab-always-indent 'complete

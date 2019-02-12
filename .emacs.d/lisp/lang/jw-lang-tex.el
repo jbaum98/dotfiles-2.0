@@ -8,7 +8,6 @@
   (require 'use-package))
 
 (use-package tex-site
-  :ensure auctex
   :mode ("\\.tex\\'" . TeX-mode))
 
 (provide 'jw-lang-tex)

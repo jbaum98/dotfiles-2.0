@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'dash))
+
 (defmacro jw//error-delegate (flycheck-forms emacs-forms)
   "Decide which error API to delegate to.
 

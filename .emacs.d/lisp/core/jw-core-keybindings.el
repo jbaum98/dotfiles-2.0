@@ -6,8 +6,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package)
-  (add-to-list 'load-path "../funcs"))
+  (require 'use-package))
 
 (defvar jw-leader-key "SPC"
   "The leader key in Evil normal, visual and motion states.")
@@ -82,6 +81,7 @@
 
 ;; Buffers
 (use-package jw-funcs-buffer
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "b"
@@ -108,6 +108,7 @@
 
 ;; Errors
 (use-package jw-funcs-error
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "e"
@@ -117,6 +118,7 @@
 
 ;; Files
 (use-package jw-funcs-file
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "f"
@@ -163,6 +165,7 @@
 
 ;; Compilation
 (use-package jw-funcs-compilation
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "c"
@@ -186,6 +189,7 @@
 (winner-mode)
 
 (use-package jw-funcs-window
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "w"
@@ -214,6 +218,7 @@
 
 ;; Alignment
 (use-package jw-funcs-align
+  :load-path "lisp/funcs"
   :general
   (jw-leader-def
     :infix "x"

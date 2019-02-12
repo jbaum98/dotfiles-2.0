@@ -6,12 +6,12 @@
 ;;; Code:
 
 (eval-when-compile
-  (add-to-list 'load-path "../core")
-  (require 'jw-core-lib))
+  (require 'use-package)
+  (use-package jw-core-lib :load-path "lisp/core"))
 
-(autoload 'projectile-invalidate-cache "projectile")
-(autoload 'dired-get-file-for-visit "dired")
-(autoload 'recentf-remove-if-non-kept "recentf")
+(use-package projectile :commands projectile-invalidate-cache)
+(use-package dired :commands dired-get-file-for-visit)
+(use-package recentf :commands recentf-remove-if-non-kept)
 
 (defun jw/copy-file ()
   "Write the file under new name."

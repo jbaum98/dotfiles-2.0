@@ -5,24 +5,22 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
-
-(defun jw--emacs-lisp-mode-hook ()
-  "Hook to run on `emacs-lisp-mode'."
-  (set (make-local-variable 'company-transformers)
-       '(jw--company-sort-tabnine-first))
-  (set (make-local-variable 'company-backends)
-       '((company-capf    ; emacs lisp specific
-          :with
-          company-tabnine ; super smart
-         )
-         (company-abbrev company-dabbrev))))
+  (require 'use-package)
+  (use-package jw-core-lib :load-path "lisp/core"))
 
 (use-package elisp-mode
   :hook
-  (emacs-lisp-mode . jw--emacs-lisp-mode-hook)
   (emacs-lisp-mode . company-mode)
-  (emacs-lisp-mode . flycheck-mode))
+  (emacs-lisp-mode . flycheck-mode)
+  :init
+  (add-hook 'emacs-lisp-mode-hook
+   (jw/set-var-hook 'company-transformers '(jw--company-sort-tabnine-first)))
+  (add-hook 'emacs-lisp-mode-hook
+            (jw/set-var-hook 'company-backends
+                             '((company-capf
+                                :with
+                                company-tabnine)
+                               (company-abbrev company-dabbrev)))))
 
 (provide 'jw-lang-elisp)
 ;;; jw-lang-elisp.el ends here

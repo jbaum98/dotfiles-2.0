@@ -6,9 +6,8 @@
 
 (eval-when-compile
   (require 'use-package)
-  (require 'general))
-
-(use-package general :commands general-define-key)
+  (use-package jw-core-lib :load-path "lisp/core")
+  (use-package general :commands general-define-key))
 
 (use-package pg-init
   :mode ("\\.v\\'" . coq-mode)
@@ -18,19 +17,17 @@
   (proof-splash-enable nil)
   (proof-three-window-mode-policy 'hybrid))
 
-(defun jw--coq-company-backends ()
-  "Hook to run on entering coq mode."
-  (set (make-local-variable 'company-backends)
-       '(company-coq-math-symbols-backend
-         company-coq-choices-backend
-         (company-coq-master-backend
-          company-tabnine)
-         (company-abbrev company-dabbrev))))
-
 (use-package company-coq
   :hook
   (coq-mode . company-coq-mode)
-  (company-coq-mode . jw--coq-company-backends)
+  :init
+  (add-hook 'company-coq-mode-hook
+            (jw/set-var-hook 'company-backends
+                             '(company-coq-math-symbols-backend
+                               company-coq-choices-backend
+                               (company-coq-master-backend
+                                company-tabnine)
+                               (company-abbrev company-dabbrev))))
   :custom-face
   (proof-eager-annotation-face ((t (:background "medium blue"))))
   (proof-error-face ((t (:background "dark red"))))

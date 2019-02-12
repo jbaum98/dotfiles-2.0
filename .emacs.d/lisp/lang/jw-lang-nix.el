@@ -5,20 +5,21 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
-
-(defun jw--nix-mode-hook ()
-  "Hook to run in `nix-mode'."
-  (set (make-local-variable 'company-backends)
-       '(company-tabnine
-         company-capf
-         (company-abbrev company-dabbrev))))
+  (require 'use-package)
+  (use-package jw-core-lib :load-path "lisp/core"))
 
 (use-package nix-mode
   :mode "\\.nix\\'"
+  ;; TODO: use :functions
+  :commands nix-indent-line
   :hook
-  (nix-mode . jw--nix-mode-hook)
   (nix-mode . company-mode)
+  :init
+  (add-hook 'nix-mode-hook
+            (jw/set-var-hook 'company-backends
+                             '(company-tabnine
+                               company-capf
+                               (company-abbrev company-dabbrev))))
   :custom
   (nix-indent-function #'nix-indent-line))
 

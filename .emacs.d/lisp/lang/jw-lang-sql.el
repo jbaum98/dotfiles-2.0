@@ -5,12 +5,15 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (use-package jw-core-lib :load-path "lisp/core"))
 
-(add-hook 'sql-interactive-mode-hook
-          (lambda ()
-            (setq-default sql-prompt-regexp "^[_[:alpha:]]*[=][#>] "
-                          sql-prompt-cont-regexp "^[_[:alpha:]]*[-][#>] ")))
+(use-package sql
+  :init
+  (add-hook 'sql-interactive-mode-hook
+            (jw/set-var-hook sql-prompt-regexp "^[_[:alpha:]]*[=][#>] "))
+  (add-hook 'sql-interactive-mode-hook
+            (jw/set-var-hook sql-prompt-cont-regexp "^[_[:alpha:]]*[-][#>] ")))
 
 (provide 'jw-lang-sql)
 ;;; jw-lang-sql.el ends here

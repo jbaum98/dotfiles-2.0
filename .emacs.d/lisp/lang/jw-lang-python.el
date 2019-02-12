@@ -5,20 +5,18 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (use-package jw-core-lib :load-path "lisp/core"))
 
-(use-package company
-  :defer)
-
-(defun jw--python-mode-hook ()
-  "Hook to run on `python-mode'."
-  (set (make-local-variable 'company-backends)
-       '((company-tabnine)
-         (company-abbrev company-dabbrev)))
-  (company-mode 1)
-  (flycheck-mode 1))
-
-(add-hook 'python-mode-hook #'jw--python-mode-hook)
+(use-package python
+  :hook
+  (python-mode . company-mode)
+  (python-mode . flycheck-mode)
+  :init
+  (add-hook 'python-mode-hook
+   (jw/set-var-hook 'company-backends
+                    '((company-tabnine)
+                      (company-abbrev company-dabbrev)))))
 
 ;; (use-package blacken
 ;;   :ensure

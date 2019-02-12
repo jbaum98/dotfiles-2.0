@@ -5,8 +5,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package)
-  (add-to-list 'load-path "../funcs"))
+  (require 'use-package))
 
 (use-package flycheck
   :custom (flycheck-emacs-lisp-load-path 'inherit)
@@ -53,6 +52,7 @@
 (use-package general :commands general-define-key)
 
 (use-package jw-funcs-error
+  :load-path "lisp/funcs"
   :after flycheck
   :general
   (jw-leader-def flycheck-mode-map
