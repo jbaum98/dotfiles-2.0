@@ -8,6 +8,8 @@ setopt inc_append_history share_history
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename '$HOME/.zshrc'
+# Completion Makefile targets
+zstyle ':completion:*:make:*:targets' call-command true
 
 autoload -Uz compinit
 compinit
@@ -54,14 +56,14 @@ zplug "zsh-users/zsh-autosuggestions", defer:3
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
-	printf "Install? [y/N]: "
-	if read -q; then
-		echo; zplug install
-	fi
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
 fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# Theme 
-source ~/.liquidprompt/liquidprompt	
+# Theme
+source ~/.liquidprompt/liquidprompt
