@@ -6,8 +6,13 @@
 ;;; Code:
 
 ;; Make startup faster by reducing the frequency of garbage
-;; collection.  The default is 800 kilobytes.  Measured in bytes.
-(setq gc-cons-threshold (* 50 1000 1000))
+;; collection.
+
+(setq gc-cons-threshold most-positive-fixnum)
+(add-hook
+ 'after-init-hook
+ (lambda ()
+   (setq gc-cons-threshold (car (get 'gc-cons-threshold 'standard-value)))))
 
 ;; Let 'em know who we are.
 (setf user-full-name "Jake Waksbaum"
@@ -30,14 +35,6 @@
  package-enable-at-startup nil
  ;; don't add that `custom-set-variables' block to my init!
  package--init-file-ensured t)
-
-;; Setup use-package
-;;(eval-and-compile (require 'use-package))
-;;
-;;(use-package use-package
-;;  :commands use-package
-;;  :config
-;;  (setf use-package-expand-minimally t))
 
 ;; Bring in the rest of our config
 ;; This uses byte-compiling magic to ensure that this path is
@@ -66,27 +63,16 @@
 (require 'jw-core-ivy)
 (require 'jw-core-magit)
 
-;;(require 'jw-lang-aurora)
 (require 'jw-lang-coq)
-;;(require 'jw-lang-tex)
+(require 'jw-lang-tex)
 (require 'jw-lang-elisp)
-;;(require 'jw-lang-elm)
-;;(require 'jw-lang-go)
-;;(require 'jw-lang-haskell)
-;;(require 'jw-lang-java)
-;;(require 'jw-lang-lua)
-;;(require 'jw-lang-markdown)
+(require 'jw-lang-markdown)
 (require 'jw-lang-nix)
 (require 'jw-lang-ocaml)
-;;(require 'jw-lang-python)
-;;(require 'jw-lang-pdf)
-;;(require 'jw-lang-proto)
-;;(require 'jw-lang-rust)
-;;(require 'jw-lang-sql)
-;;(require 'jw-lang-yaml)
-
-;; Make gc pauses faster by decreasing the threshold.
-(setq gc-cons-threshold (* 2 1000 1000))
+(require 'jw-lang-python)
+(require 'jw-lang-pdf)
+(require 'jw-lang-sql)
+(require 'jw-lang-yaml)
 
 (provide 'init)
 ;;; init.el ends here
