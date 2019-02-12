@@ -5,7 +5,10 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (use-package jw-core-keybindings :load-path "lisp/core"))
+
+(use-package general :commands general-define-key)
 
 (use-package flycheck
   :custom (flycheck-emacs-lisp-load-path 'inherit)
@@ -48,8 +51,6 @@
     :overlay-category 'flycheck-info-overlay
     :fringe-bitmap 'flycheck-fringe-bitmap-ball
     :fringe-face 'flycheck-fringe-info))
-
-(use-package general :commands general-define-key)
 
 (use-package jw-funcs-error
   :load-path "lisp/funcs"

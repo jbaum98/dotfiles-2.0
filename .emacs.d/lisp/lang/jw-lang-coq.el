@@ -7,7 +7,9 @@
 (eval-when-compile
   (require 'use-package)
   (use-package jw-core-lib :load-path "lisp/core")
-  (use-package general :commands general-define-key))
+  (use-package jw-core-keybindings :load-path "lisp/core"))
+
+(use-package general :commands general-define-key)
 
 (use-package pg-init
   :mode ("\\.v\\'" . coq-mode)
