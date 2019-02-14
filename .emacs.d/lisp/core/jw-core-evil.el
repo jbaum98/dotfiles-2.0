@@ -11,14 +11,13 @@
 
 (use-package general :commands general-define-key)
 
-(require 'evil)
-
-(setf
+(setq
  ;; Fix coq expansion bug https://github.com/ProofGeneral/PG/issues/174
  evil-want-abbrev-expand-on-insert-exit nil
  ;; Use visual movements
  evil-respect-visual-line-mode t)
 
+(require 'evil)
 (evil-mode 1)
 
 ;; Prevents esc-key from translating to meta-key in terminal mode.
