@@ -9,18 +9,23 @@
 
 (use-package org
   :mode  "\\.org\'"
-  :hook (org-mode . org-indent-mode)
+  :hook
+  (org-mode . org-indent-mode)
+  (org-mode . org-cdlatex-mode)
+  (org-mode . (lambda () (electric-pair-local-mode -1)))
   :init
   (setq-default org-list-allow-alphabetical t)
   :config
   (setq-default org-src-fontify-natively t
                 org-src-tab-acts-natively t
-                org-src-window-setup 'reorganize-frame))
+                org-src-window-setup 'reorganize-frame
+                org-catch-invisible-edits 'show-and-error
+                org-pretty-entities-include-sub-superscripts nil
+                org-image-actual-width nil))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("∙")))
+  :custom  (org-bullets-bullet-list '("∙")))
 
 (use-package htmlize
   :commands
