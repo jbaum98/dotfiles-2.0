@@ -4,5 +4,6 @@
   (import ./nixpkgs-overlays/evil-escape.nix)
   (import ./nixpkgs-overlays/merlin.nix)
   (import ./nixpkgs-overlays/nix-mode.nix)
+  (import ./nixpkgs-overlays/emacs-imagemagick.nix)
   (import ./nixpkgs-overlays/emacs.nix)
 ]
