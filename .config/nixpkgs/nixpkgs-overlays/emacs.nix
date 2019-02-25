@@ -34,6 +34,7 @@ self: super:
       spinner
       swiper
       tuareg
+      utop
       which-key
       yaml-mode
     ]) ++ (with epkgs.melpaPackages; [
