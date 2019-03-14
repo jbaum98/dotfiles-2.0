@@ -5,5 +5,5 @@ Emacs.toolBar:            off
 Emacs.cursorBlink:        off
 Emacs.cursorColor:        red
 Emacs.fontBackend:        xft
-Emacs.font:               iosevka-12
+Emacs.font:               iosevka-10
 Xft.antialias: 1;

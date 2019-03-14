@@ -8,9 +8,14 @@ export TZ=:/etc/localtime
 export TERM="xterm-256color"
 
 ## Run Nix hooks
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then 
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
   . $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
 
+## Fix locale problems
 export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
 
+## Ensure emacs respects ~/.Xresources
+if [ -e $HOME/.Xresources ]; then
+    xrdb ~/.Xresources 
+fi
