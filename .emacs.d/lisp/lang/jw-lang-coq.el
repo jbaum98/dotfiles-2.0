@@ -16,8 +16,7 @@
   ;; Fix keybinding issues
   :hook (coq-mode . evil-normalize-keymaps)
   :custom
-  (proof-splash-enable nil)
-  (proof-three-window-mode-policy 'hybrid))
+  (proof-splash-enable nil))
 
 (use-package company-coq
   :hook
