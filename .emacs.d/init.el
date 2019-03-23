@@ -52,6 +52,7 @@
   (add-to-list 'load-path jw-lang-dir)
   (add-to-list 'load-path jw-funcs-dir))
 
+(require 'jw-core-xdg)
 (require 'jw-core-emacs-settings)
 (require 'jw-core-ui)
 (require 'jw-core-keybindings)
@@ -62,6 +63,7 @@
 (require 'jw-core-check)
 (require 'jw-core-ivy)
 (require 'jw-core-magit)
+;;(require 'jw-core-dash)
 
 (require 'jw-lang-coq)
 (require 'jw-lang-tex)
