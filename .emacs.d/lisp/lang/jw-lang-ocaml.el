@@ -46,5 +46,9 @@
 (use-package tuareg
   :mode ("\\.ml\\'" . tuareg-mode))
 
+(use-package ocp-indent
+  :if (executable-find "ocp-indent")
+  :hook (tuareg-mode . ocp-setup-indent))
+
 (provide 'jw-lang-ocaml)
 ;;; jw-lang-ocaml ends here

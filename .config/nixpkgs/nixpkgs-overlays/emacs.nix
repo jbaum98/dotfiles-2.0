@@ -23,6 +23,7 @@ self: super:
       lsp-ui
       magit
       merlin
+      ocp-indent
       org-bullets
       org-ref
       projectile
