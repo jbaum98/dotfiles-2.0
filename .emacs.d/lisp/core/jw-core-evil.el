@@ -11,14 +11,16 @@
 
 (use-package general :commands general-define-key)
 
-(setq
+(require 'evil-vars)
+
  ;; Fix coq expansion bug https://github.com/ProofGeneral/PG/issues/174
- evil-want-abbrev-expand-on-insert-exit nil
- ;; Use visual movements
- evil-respect-visual-line-mode t)
+(setq evil-want-abbrev-expand-on-insert-exit nil)
 
 (require 'evil)
 (evil-mode 1)
+
+;; Use visual movements
+(setq evil-respect-visual-line-mode t)
 
 ;; Prevents esc-key from translating to meta-key in terminal mode.
 (setq evil-esc-delay 0)
