@@ -48,6 +48,9 @@
 
 (use-package ocp-indent
   :if (executable-find "ocp-indent")
+  ;; Otherwise use-package requires when byte-compilinig
+  ;; https://github.com/jwiegley/use-package#prevent-a-package-from-loading-at-compile-time
+  :no-require
   :hook (tuareg-mode . ocp-setup-indent))
 
 (provide 'jw-lang-ocaml)
