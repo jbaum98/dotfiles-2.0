@@ -29,13 +29,6 @@
                      gcs-done)))
 
 
-;; Stop package.el from getting in the way
-(setf
- ;; don't auto-initialize!
- package-enable-at-startup nil
- ;; don't add that `custom-set-variables' block to my init!
- package--init-file-ensured t)
-
 ;; Bring in the rest of our config
 ;; This uses byte-compiling magic to ensure that this path is
 ;; computed relative to the location at compile-time.
