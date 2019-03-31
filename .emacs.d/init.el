@@ -28,15 +28,8 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
-
-;; Bring in the rest of our config
-;; This uses byte-compiling magic to ensure that this path is
-;; computed relative to the location at compile-time.
 (eval-and-compile
-  (defconst jw-lisp-dir (eval-and-compile
-                          (if load-file-name
-                              (expand-file-name "lisp" (file-name-directory load-file-name))
-                            (expand-file-name "lisp"))))
+  (defconst jw-lisp-dir (expand-file-name "lisp" user-emacs-directory))
   (defconst jw-core-dir  (expand-file-name "core"  jw-lisp-dir))
   (defconst jw-funcs-dir (expand-file-name "funcs" jw-lisp-dir))
   (defconst jw-lang-dir  (expand-file-name "lang"  jw-lisp-dir))
