@@ -3,7 +3,7 @@ OBJECTS := $(SOURCES:%.el=%.elc)
 
 .PHONY: all clean
 
-all: $(OBJECTS)
+all: $(OBJECTS) init.elc
 
 clean:
 	fd -e "elc" -x rm
