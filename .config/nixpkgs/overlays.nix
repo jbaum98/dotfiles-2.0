@@ -6,4 +6,5 @@
   (import ./nixpkgs-overlays/nix-mode.nix)
   (import ./nixpkgs-overlays/emacs-imagemagick.nix)
   (import ./nixpkgs-overlays/emacs.nix)
+  (import ./nixpkgs-overlays/xi.nix)
 ]
