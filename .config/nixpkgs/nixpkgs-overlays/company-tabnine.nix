@@ -8,7 +8,10 @@ self: super:
       url =
         let target = super.stdenv.targetPlatform.config;
         in "https://update.tabnine.com/${version}/${target}/TabNine";
-      sha256 = "1sjn0m9i1wij5jqk2c6lhh1arh4vsz0l99q3dbw99qgk8rivikva";
+      sha256 =
+        if self.hostPlatform.isDarwin
+        then "1k3rdrx98fjmbgxwn9y97ys6181x5ddjwy6qbh7dl9if5jgpxj7c"
+        else "1sjn0m9i1wij5jqk2c6lhh1arh4vsz0l99q3dbw99qgk8rivikva";
     };
 
     phases = ["installPhase"];
