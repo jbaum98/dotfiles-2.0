@@ -36,3 +36,8 @@
 .xdvirc
 .zcompdump
 .zsh_history
+.DS_Store
+.CFUserTextEncoding
+.Trash
+.cups
+.bash_sessions
