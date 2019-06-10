@@ -1,6 +1,5 @@
 self: super:
 let emacsWithPkgs = super.emacsPackagesNg.emacsWithPackages (epkgs:
-  [ super.ghostscript ] ++
   (with epkgs; [
     cargo
     cdlatex
