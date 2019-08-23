@@ -16,5 +16,8 @@
   :general
   (jw-leader-def "gs" 'magit-status))
 
+(use-package evil-magit
+  :after magit)
+
 (provide 'jw-core-magit)
 ;;; jw-core-magit.el ends here

@@ -54,6 +54,8 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-autosuggestions", defer:3
 
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
     printf "Install? [y/N]: "
@@ -66,4 +68,14 @@ fi
 zplug load
 
 # Theme
-source ~/.liquidprompt/liquidprompt
+# source ~/.liquidprompt/liquidprompt
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# fzf keybindings and completion
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+[[ -f ~/.nix-profile/share/fzf/key-bindings.zsh ]] && source ~/.nix-profile/share/fzf/key-bindings.zsh
+[[ -f ~/.nix-profile/share/fzf/completion.zsh ]] && source ~/.nix-profile/share/fzf/completion.zsh

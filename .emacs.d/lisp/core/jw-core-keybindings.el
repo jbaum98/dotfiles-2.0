@@ -114,7 +114,8 @@
     :infix "e"
     "" '(nil :wk "errors")
     "n" '(jw/next-error :wk "next-error")
-    "p" '(jw/previous-error :wk "previous-error")))
+    "p" '(jw/previous-error :wk "previous-error")
+    "l" '(jw/toggle-error-list :wk "list-errors")))
 
 ;; Files
 (use-package jw-funcs-file

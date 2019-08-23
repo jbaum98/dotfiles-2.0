@@ -13,9 +13,9 @@ if dein#load_state(expand('~/.vim/bundle'))
 
     " Deoplete (Code Completion) {{{
     call dein#add('Shougo/deoplete.nvim', {'on_event': 'InsertEnter'})
-    call dein#add('zchee/deoplete-clang')                 " C/C++
-    call dein#add('zchee/deoplete-go',
-                \ {'build': 'make', 'on_ft': 'go'})       " Go
+    "call dein#add('zchee/deoplete-clang')                 " C/C++
+    "call dein#add('zchee/deoplete-go',
+                "\ {'build': 'make', 'on_ft': 'go'})       " Go
     call dein#add('sebastianmarkow/deoplete-rust',
                 \ {'on_ft': 'rust'})                      " Rust
     call dein#add('Shougo/neco-vim',
@@ -253,14 +253,14 @@ let g:deoplete#enable_refresh_always = 1
 " Use tab key
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-if has('mac')
-    let g:libclang_path = g:nixprofile . '/lib/libclang.dylib'
-else
-    let g:libclang_path = g:nixprofile . '/lib/libclang.so'
-end
+"if has('mac')
+"    let g:libclang_path = g:nixprofile . '/lib/libclang.dylib'
+"else
+"    let g:libclang_path = g:nixprofile . '/lib/libclang.so'
+"end
 "" C/C++ {{{{
-let g:deoplete#sources#clang#libclang_path = g:libclang_path
-let g:deoplete#sources#clang#clang_header = g:nixprofile . '/lib/clang'
+"let g:deoplete#sources#clang#libclang_path = g:libclang_path
+"let g:deoplete#sources#clang#clang_header = g:nixprofile . '/lib/clang'
 "" }}}}
 "" Go {{{{
 let g:deoplete#sources#go#gocode_binary = g:nixprofile . '/bin/gocode'
@@ -269,7 +269,7 @@ let g:deoplete#sources#go#pointer = 1
 let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
 let g:deoplete#sources#go#cgo = 1
-let g:deoplete#sources#go#cgo#libclang_path = g:libclang_path
+"let g:deoplete#sources#go#cgo#libclang_path = g:libclang_path
 "" }}}}
 "" Rust {{{{
 let g:deoplete#sources#rust#racer_binary = g:nixprofile . '/bin/racer'

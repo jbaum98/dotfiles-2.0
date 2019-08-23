@@ -27,6 +27,15 @@
   :hook (org-mode . org-bullets-mode)
   :custom  (org-bullets-bullet-list '("∙")))
 
+(use-package ob
+  :after org
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (haskell . t)
+     )))
+
 (use-package htmlize
   :commands
   htmlize-buffer

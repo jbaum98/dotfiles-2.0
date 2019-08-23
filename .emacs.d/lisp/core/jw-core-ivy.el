@@ -5,7 +5,8 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (use-package jw-core-keybindings :load-path "lisp/core"))
 
 (use-package general :commands general-define-key)
 
@@ -46,6 +47,7 @@
 
 (use-package ivy
   ;; :diminish ivy-mode
+  :commands ivy-completing-read ivy-completion-in-region
   :general
   (jw-leader-def
    "bb" 'ivy-switch-buffer

@@ -3,7 +3,7 @@
 # future version.
 self: super:
 {
-  emacsPackagesNg = super.emacsPackagesNg.overrideScope' (selfEpkgs: superEpkgs: {
+  emacsPackagesNgFor = emacs: (super.emacsPackagesNgFor emacs).overrideScope' (selfEpkgs: superEpkgs: {
     evil-escape = superEpkgs.evil-escape.overrideAttrs(attrs: {
       patches = (attrs.patches or []) ++ [
         (super.fetchpatch {

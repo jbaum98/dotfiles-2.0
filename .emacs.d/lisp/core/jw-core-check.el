@@ -60,7 +60,6 @@
     :infix "e"
     "c" '(flycheck-clear :wd "clear")
     "h" '(flycheck-describe-checker :wd "describe")
-    "l" '(jw/toggle-flycheck-error-list :wd "toggle")
     "L" '(jw/goto-flycheck-error-list :wd "error-list")
     "e" '(flycheck-explain-error-at-point :wd "explain-error-at-point")
     "s" '(flycheck-select-checker :wd "select")

@@ -22,7 +22,7 @@ synchronous_triggers = ["."]
 
 [language.cpp]
 command = "cquery"
-args = ["--init={\"cacheDirectory\": \"${project_root}/.cquery_cache\"}"]
+args = ["'--init={\"cacheDirectory\": \"${project_root}/.cquery_cache\"}'"]
 
 [language.haskell]
 command = "hie"
