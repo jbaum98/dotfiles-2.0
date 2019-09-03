@@ -4,6 +4,10 @@ HISTSIZE=10000
 SAVEHIST=20000
 setopt inc_append_history share_history
 
+# fzf keybindings and completion
+[[ -f ~/.nix-profile/share/fzf/key-bindings.zsh ]] && source ~/.nix-profile/share/fzf/key-bindings.zsh
+[[ -f ~/.nix-profile/share/fzf/completion.zsh ]] && source ~/.nix-profile/share/fzf/completion.zsh
+
 ## Misc. Settings
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -71,7 +75,3 @@ zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-# fzf keybindings and completion
-[[ -f ~/.nix-profile/share/fzf/key-bindings.zsh ]] && source ~/.nix-profile/share/fzf/key-bindings.zsh
-[[ -f ~/.nix-profile/share/fzf/completion.zsh ]] && source ~/.nix-profile/share/fzf/completion.zsh
