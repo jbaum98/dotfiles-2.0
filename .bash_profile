@@ -27,3 +27,8 @@ export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 if command -v xrdb && [ -e $HOME/.Xresources ]; then
     xrdb $HOME/.Xresources
 fi
+
+## Load bashrc if on Terminal.app and bash
+if [ "$TERM_PROGRAM" = "Apple_Terminal" -a -n "$BASH_VERSION" ]; then
+    source ~/.bashrc
+fi
