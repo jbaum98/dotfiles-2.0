@@ -12,6 +12,11 @@ export LC_ALL="en_US.UTF-8"
 export TZ=:/etc/localtime
 export TERM="xterm-256color"
 
+## Aliases
+if ls --color 2>/dev/null; then
+    alias ls="ls --color"
+fi
+alias dfg="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 ## Ensure emacs respects ~/.Xresources
 if [ -e $HOME/.Xresources ]; then
