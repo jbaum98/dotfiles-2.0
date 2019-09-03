@@ -44,7 +44,6 @@ zplug "zsh-users/zsh-autosuggestions"
 
 zplug "srijanshetty/zsh-pandoc-completion"
 
-zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/ssh-agent", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
 
