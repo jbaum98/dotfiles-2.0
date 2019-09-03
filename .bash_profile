@@ -24,6 +24,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 ## Ensure emacs respects ~/.Xresources
-if [ -e $HOME/.Xresources ]; then
-    xrdb ~/.Xresources 
+if command -v xrdb && [ -e $HOME/.Xresources ]; then
+    xrdb $HOME/.Xresources
 fi
