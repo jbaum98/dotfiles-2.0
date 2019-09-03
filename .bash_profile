@@ -18,6 +18,11 @@ if ls --color 2>/dev/null; then
 fi
 alias dfg="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
+## FZF configuration
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+
 ## Ensure emacs respects ~/.Xresources
 if [ -e $HOME/.Xresources ]; then
     xrdb ~/.Xresources 
