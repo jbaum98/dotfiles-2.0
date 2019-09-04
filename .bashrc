@@ -20,9 +20,9 @@ HISTFILESIZE=2000
 
 ## Appearance
 # Use Liquid prompt
-if [ -e $HOME/.liquidprompt/liquidprompt ]; then
-  . $HOME/.liquidprompt/liquidprompt
-fi
+#if [ -e $HOME/.liquidprompt/liquidprompt ]; then
+  #. $HOME/.liquidprompt/liquidprompt
+#fi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
