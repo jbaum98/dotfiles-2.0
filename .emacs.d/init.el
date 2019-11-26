@@ -50,14 +50,14 @@
 (require 'jw-core-magit)
 
 (require 'jw-lang-coq)
-(require 'jw-lang-tex)
 (require 'jw-lang-elisp)
 (require 'jw-lang-markdown)
 (require 'jw-lang-nix)
 (require 'jw-lang-ocaml)
-(require 'jw-lang-python)
 (require 'jw-lang-pdf)
+(require 'jw-lang-python)
 (require 'jw-lang-sql)
+(require 'jw-lang-tex)
 (require 'jw-lang-yaml)
 
 (provide 'init)
