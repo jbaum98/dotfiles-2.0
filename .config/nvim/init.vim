@@ -152,8 +152,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 " Colors {{{
 set number
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set t_Co=256
+set termguicolors
 set background=dark
 colorscheme hybrid
 " }}}
