@@ -11,7 +11,7 @@
 
 (use-package general :commands general-define-key)
 
-(use-package pg-init
+(use-package proof-general
   :mode ("\\.v\\'" . coq-mode)
   ;; Fix keybinding issues
   :hook (coq-mode . evil-normalize-keymaps)
