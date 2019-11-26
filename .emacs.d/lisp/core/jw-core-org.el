@@ -21,7 +21,8 @@
                 org-src-window-setup 'reorganize-frame
                 org-catch-invisible-edits 'show-and-error
                 org-pretty-entities-include-sub-superscripts nil
-                org-image-actual-width nil))
+                org-image-actual-width nil
+                org-log-done t))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
