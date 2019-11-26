@@ -10,3 +10,5 @@ smex-items
 projectile.cache
 projectile-bookmarks.eld
 *.elc
+\#*\#
+transient
