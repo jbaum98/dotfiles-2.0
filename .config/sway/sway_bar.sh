@@ -55,7 +55,7 @@ then
    network_active="⛔"
 else
   if [ "$network" = "wlan0" ]; then
-      wifi="$(nmcli d wifi list ifname wlan0 --rescan no  | awk '(/*/ || NR==1)' | ~/.config/sway/nmcli_parse)"
+      wifi="$(nmcli d wifi list ifname wlan0 --rescan no  | awk '(/*/ || NR==1)' | nmcli_parse)"
       network_active="⇆ $wifi"
   else
       network_active="⇆ $network"
